@@ -1,0 +1,58 @@
+[
+	{
+		"type":"config",
+		"distDir":"bin/",
+		"srcDir":"src/",
+		"includeDir":"include/"
+	}, {
+		"type":"compiler",
+		"executableName":"g++",
+		"outputFlag":"-c -o"
+	}, {
+		"type":"compiler",
+		"name":"debug",
+		"compileFlag":["-g", "-Og", "-D_DEBUG", "-D__DEBUG__"]
+	}, {
+		"type":"compiler",
+		"name":"release",
+		"compileFlag":"-O2"
+	}, {
+		"type":"linker",
+		"executableName":"g++",
+		"outputFlag":"-o",
+		"linkFlag":[
+			"-lglfw3",
+			"-lglu32",
+			"-lgdi32",
+			"-lopengl32",
+			"-lpsapi"
+		]
+	}, {
+		"type":"linker",
+		"name":"debug",
+		"linkFlag":["-g", "-Og"]
+	}, {
+		"type":"linker",
+		"name":"release",
+		"linkFlag":"-O2"
+	}, {
+		"type":"target",
+		"name":"watcher",
+		"compiler":"release",
+		"linker":"release"
+	}, {
+		"type":"target",
+		"name":"watcherd",
+		"compiler":"debug",
+		"linker":"debug"
+	}, {
+		"type":"task",
+		"name":"debug",
+		"target":"watcherd"
+	}, {
+		"type":"task",
+		"name":"release",
+		"target":"watcher",
+		"default":true
+	}
+]
